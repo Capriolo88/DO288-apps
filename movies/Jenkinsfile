@@ -83,15 +83,17 @@ label 'maven'
                     }
                 }
                 // TODO: Create a new OpenShift application based on the ${APP_NAME}:latest image stream
-sh '''
+                sh '''
 
-    oc new-app --as-deployment-config ${APP_NAME}:latest -n ${DEV_PROJECT}
+                    oc new-app --as-deployment-config ${APP_NAME}:latest -n ${DEV_PROJECT}
 
-    oc expose svc/${APP_NAME} -n ${DEV_PROJECT}
+                    oc expose svc/${APP_NAME} -n ${DEV_PROJECT}
 
-   '''
+                '''
                 // TODO: Expose the ${APP_NAME} service for external access
-
+            }
+        }
+        
         stage('Wait for deployment in DEV env') {
             //TODO: Watch deployment until pod is in 'Running' state
 script {
